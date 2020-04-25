@@ -1,59 +1,46 @@
 <template>
   <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
-    </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <hello></hello>
+      <div class="section">
+        <h2>{{this.sections[0].headline}}</h2>
+        <Carousel :cards="cards" />
+      </div>
     </main>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-
-export default {
-  name: 'app',
-  components: {
-    Hello
-  }
-}
+  import Carousel from "./components/Carousel";
+  export default {
+    name: "app",
+    components: { Carousel },
+    data() {
+      return {
+        sections: [
+          { headline: "What can Service Workers do?" },
+        ],
+        cards: [
+          {
+            headline: "Make App available Offline",
+            text: "All static files get pre-cached by using the Caching API.",
+            imgName: "setting.svg"
+          },
+          {
+            headline: "Use background sync to defer actions",
+            text:
+              "Data can be entered offline, it's sent when online again thanks to the Background Sync API.",
+            imgName: "cloud.svg"
+          },
+          {
+            headline: "Send Push Notifications",
+            text:
+              "The Notifications API lets us send push notifications to re-engage users.",
+            imgName: "antenna.svg"
+          }
+        ]
+      };
+    }
+  };
 </script>
 
-<style>
-body {
-  margin: 0;
-}
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-main {
-  text-align: center;
-  margin-top: 40px;
-}
-
-header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
-}
-
-header span {
-  display: block;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
-}
-</style>
+<style src="./assets/styles/App.css"/>
